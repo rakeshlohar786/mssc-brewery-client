@@ -3,6 +3,7 @@ package guru.springframework.msscbreweryclient.web.client;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.net.URI;
 import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
@@ -22,6 +23,20 @@ public class BreweryClientTest {
 		
 		BeerDto dto = client.getBeerById(UUID.randomUUID());
 		assertNotNull(dto);
+	}
+	
+	
+	@Test
+	void testSavedNewBear() {
+		//given
+		BeerDto beerDto = BeerDto.builder().beerName("New Beer").build();
+		
+		URI uri = client.saveNewBeer(beerDto);
+		
+		assertNotNull(uri);
+		
+		System.out.println(uri.toString());
+		
 	}
 	
 }
